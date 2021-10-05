@@ -214,7 +214,7 @@ class ChessBoard:
             self._board[fy][fx] = "."
             self._board[ty][tx] = fp
 
-            if specialMoves.has_key(m) and specialMoves[m] == self.EP_CAPTURE_MOVE:
+            if (m in specialMoves) and specialMoves[m] == self.EP_CAPTURE_MOVE:
                 sp = self._board[self._ep[1]][self._ep[0]]
                 self._board[self._ep[1]][self._ep[0]] = "."
                             
@@ -462,7 +462,7 @@ class ChessBoard:
         if not toPos in moves:
             return False
         
-        if specialMoves.has_key(toPos):
+        if (toPos in specialMoves):
             t = specialMoves[toPos]
         else:
             t = 0
@@ -541,7 +541,7 @@ class ChessBoard:
             
         moves,specialMoves = self.getValidKingMoves(fromPos)
 
-        if specialMoves.has_key(toPos):
+        if (toPos in specialMoves):
             t = specialMoves[toPos]
         else:
             t = 0
@@ -699,7 +699,7 @@ class ChessBoard:
             return None
 
         # Get the destination
-        if not files.has_key(t[-2]) or not ranks.has_key(t[-1]):
+        if (t[-2] not in files) or (t[-1] not in ranks):
             return None
             
         dest_x = files[t[-2]]
@@ -1342,12 +1342,12 @@ class ChessBoard:
         """
         Print the current board layout.
         """
-        print "  +-----------------+"
+        print( "  +-----------------+")
         rank = 8
         for l in self._board:
-            print "%d | %s %s %s %s %s %s %s %s |" % (rank,l[0],l[1],l[2],l[3],l[4],l[5],l[6],l[7])
+            print( "%d | %s %s %s %s %s %s %s %s |" % (rank,l[0],l[1],l[2],l[3],l[4],l[5],l[6],l[7]))
             rank-=1
-        print "  +-----------------+"
-        print "    A B C D E F G H"  
+        print( "  +-----------------+")
+        print( "    A B C D E F G H" ) 
     
 
